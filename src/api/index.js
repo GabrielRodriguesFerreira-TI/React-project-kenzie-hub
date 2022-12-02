@@ -7,21 +7,23 @@ export const client = axios.create({
     timeout: 1000,
 })
 
-export const GetUser = async (token) => {
+export const getUser = async (token) => {
     try {
         const response = await client.get("profile", {
-            headers : {
+            headers: {
                 Authorization: `Bearer ${token}`
             }
         })
         return response.data
     } catch (error) {
-        console.log(error)
+        toast.error('Ops! algo deu errado', {
+            autoClose: 3500,
+        });
     }
 }
 
 
-export const LoginUser = async (data, setLoading, navigate) => {
+export const loginUser = async (data, setLoading, navigate) => {
 
 
     try {
@@ -31,14 +33,11 @@ export const LoginUser = async (data, setLoading, navigate) => {
             autoClose: 1000,
         });
 
-        console.log(response.data)
         window.localStorage.clear()
         window.localStorage.setItem("Token", response.data.token)
         window.localStorage.setItem("userId", response.data.user.id)
 
-        setTimeout(function() {
-            navigate("/dashboard/user")
-        }, 2000)
+        navigate("/dashboard/user")
 
     } catch (error) {
         toast.error('Ops! algo deu errado', {
@@ -49,7 +48,7 @@ export const LoginUser = async (data, setLoading, navigate) => {
     }
 }
 
-export const CreatUser = async (data, setLoading) => {
+export const creatUser = async (data, setLoading) => {
     try {
         setLoading(true)
         const response = await client.post('users', data)

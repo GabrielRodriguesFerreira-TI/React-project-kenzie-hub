@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { GetUser } from "../../api"
+import { getUser } from "../../api"
 import { Header } from "../../components/Header"
 import { ContainerStyled, DivContent, DivStyled, SpanLine, SpanStyled, TextStyled, Title } from "./styles"
 
@@ -13,7 +13,7 @@ export const DashBoardPage = () => {
             !localStorage.getItem("Token") && Navigate("/login")
 
             const token = localStorage.getItem("Token")
-            const user = await GetUser(token)
+            const user = await getUser(token)
             setUserState(user)
         }
         getUserFunction()
