@@ -57,6 +57,8 @@ export const ButtonStyledLink = styled(LinkStyled)`
     justify-content: center;
     align-items: center;
 
+    font-family: 'Inter', sans-serif;
+
     color: #F8F9FA;
     text-decoration: none;
 
@@ -72,6 +74,8 @@ export const ButtonStyled = styled.button`
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
+    font-family: 'Inter', sans-serif;
 
     text-decoration: none;
 
