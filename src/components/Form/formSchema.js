@@ -1,6 +1,6 @@
 import * as yup from "yup"
 
-export const RegisterSchema = yup.object().shape({
+export const registerSchema = yup.object().shape({
     name: yup.string().trim().required("Nome Obrigatório").min(3, "O nome precisa ter no minimo 3 caracteres").max(100),
     email: yup.string().trim().required("Email Obrigatório").email("Email inválido"),
     password: yup.string().trim().required("Senha Obrigatória")
@@ -15,7 +15,7 @@ export const RegisterSchema = yup.object().shape({
     course_module: yup.string().required("Informe o seu modulo")
 })
 
-export const LoginSchema = yup.object().shape({
+export const loginSchema = yup.object().shape({
     email: yup.string().trim().required("Email Obrigatório").email("Email inválido"),
     password: yup.string().trim().required("Senha Obrigatória").min(8, "É necessário no mínimo 8 digitos"),
 })
