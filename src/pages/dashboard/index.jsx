@@ -1,53 +1,42 @@
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { getUser } from "../../api"
+import { useContext } from "react"
 import { Header } from "../../components/Header"
-import { ContainerStyled, DivContent, DivStyled, SpanLine, SpanStyled, TextStyled, Title } from "./styles"
+import { UserContext } from "../../contexts/UserContext"
+import { ContainerStyled, DivContent, DivHeader, SpanLine, SpanStyled, Title } from "./styles"
 
 export const DashBoardPage = () => {
-    const [userState, setUserState] = useState({})
-    const Navigate = useNavigate()
+    const { userState, loading } = useContext(UserContext)
 
-    useEffect(() => {
-        const getUserFunction = async () => {
-            !localStorage.getItem("Token") && Navigate("/login")
-
-            const token = localStorage.getItem("Token")
-            const user = await getUser(token)
-            setUserState(user)
-        }
-        getUserFunction()
-    }, [])
-
+    if (loading) {
+        return;
+    }
 
     return (
         <>
             <ContainerStyled>
-                <DivContent>
+                <DivHeader>
                     <Header dashBoard={true} />
-                </DivContent>
+                </DivHeader>
             </ContainerStyled>
+
             <SpanLine />
+
             <ContainerStyled>
-                <DivContent>
+                <DivHeader>
                     <Title>
                         Olá, {userState.name}
                     </Title>
                     <SpanStyled>
                         {userState.course_module}
                     </SpanStyled>
-                </DivContent>
+                </DivHeader>
             </ContainerStyled>
+
             <SpanLine />
+
             <ContainerStyled>
-                <DivStyled>
-                    <Title>
-                        Que pena! Estamos em desenvolvimento :(
-                    </Title>
-                    <TextStyled>
-                        Nossa aplicação está em desenvolvimento, em breve teremos novidades
-                    </TextStyled>
-                </DivStyled>
+                <DivContent>
+
+                </DivContent>
             </ContainerStyled>
         </>
     )
