@@ -5,14 +5,20 @@ export const ContainerStyled = styled.div`
     margin: 0 auto;
 `
 
-export const DivContent = styled.div`
+export const DivHeader = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    gap: 20px;
+    align-items: flex-start;
 
     width: 100%;
     margin-top: 30px;
+
+    @media (min-width: 950px) {
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+    }
 `
 
 export const SpanLine = styled.div`
@@ -37,7 +43,7 @@ export const Title = styled.h2`
 `
 
 export const SpanStyled = styled.span`
-    padding: 15px 10px 15px 0px;
+    padding: 15px 10px 15px 10px;
     font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -47,19 +53,11 @@ export const SpanStyled = styled.span`
 
     @media (min-width: 950px) {
         font-size: 15px;
+        padding: 15px 10px 15px 0px;
     }
 `
 
-export const TextStyled = styled.p`
-    padding: 15px 0px 15px 10px; 
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    color: #FFFFFF;
-`
-
-export const DivStyled = styled.div`
-    margin-top: 60px;
+export const DivContent = styled.div`
+    display: flex;
+    flex-direction:column;
 `
