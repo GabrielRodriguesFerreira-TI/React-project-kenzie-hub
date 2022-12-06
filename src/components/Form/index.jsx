@@ -5,32 +5,17 @@ import { DivButton, DivInput, DivTitle, FormStyled, Title } from "./styles"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useForm } from "react-hook-form"
 import { loginSchema, registerSchema } from "./formSchema"
-import { useState } from "react"
-import { creatUser, loginUser } from "../../api"
-import { useNavigate } from "react-router-dom"
+import { useContext } from "react"
+import { UserContext } from "../../contexts/UserContext"
 
 
 export const FormApp = ({ boolean }) => {
-    const [loading, setLoading] = useState(false)
+    const { loading, loginSubmit, registerSubmit } = useContext(UserContext)
 
-    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+    const { register, handleSubmit, formState: { errors }} = useForm({
         mode: "onBlur",
         resolver: yupResolver(boolean === "true" ? loginSchema : registerSchema)
     })
-
-    const Navigate = useNavigate()
-
-    const loginSubmit = async (data) => {
-        await loginUser(data, setLoading, Navigate)
-        reset()
-    }
-
-    const registerSubmit = async (data) => {
-        delete data.confirmPassword
-        await creatUser(data, setLoading)
-        reset()
-    }
-
 
     return (
         <>
