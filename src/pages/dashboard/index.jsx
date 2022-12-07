@@ -1,10 +1,15 @@
 import { useContext } from "react"
 import { Header } from "../../components/Header"
+import { AddModal } from "../../components/Modal"
+import { Technology } from "../../components/Technology"
+import { TechContext } from "../../contexts/TechContext"
 import { UserContext } from "../../contexts/UserContext"
-import { ContainerStyled, DivContent, DivHeader, SpanLine, SpanStyled, Title } from "./styles"
+import { ContainerStyled, ContentHeader, DivContent, DivHeader, DivPadding, SpanLine, SpanStyled, Title } from "./styles"
 
 export const DashBoardPage = () => {
     const { userState, loading } = useContext(UserContext)
+    const { setIsModalOpen, isModalOpen } = useContext(TechContext)
+
 
     if (loading) {
         return;
@@ -12,6 +17,8 @@ export const DashBoardPage = () => {
 
     return (
         <>
+            {isModalOpen === "true" && <AddModal />}
+
             <ContainerStyled>
                 <DivHeader>
                     <Header dashBoard={true} />
@@ -35,7 +42,14 @@ export const DashBoardPage = () => {
 
             <ContainerStyled>
                 <DivContent>
+                    <ContentHeader>
+                        <h2>Tecnologias</h2>
+                        <i onClick={() => setIsModalOpen("true")}>+</i>
+                    </ContentHeader>
 
+                    <DivPadding>
+                        <Technology tecList={userState.techs} />
+                    </DivPadding>
                 </DivContent>
             </ContainerStyled>
         </>
