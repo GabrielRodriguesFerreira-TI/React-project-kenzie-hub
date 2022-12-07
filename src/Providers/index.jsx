@@ -1,9 +1,12 @@
+import { TechProvider } from "../contexts/TechContext"
 import { UserProvider } from "../contexts/UserContext"
 
 export const Providers = ({ children }) => {
     return (
         <UserProvider>
-            {children}
+            <TechProvider>
+                {children}
+            </TechProvider>
         </UserProvider>
     )
 }

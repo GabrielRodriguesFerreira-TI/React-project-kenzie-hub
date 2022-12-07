@@ -37,7 +37,7 @@ export const FormApp = ({ boolean }) => {
                             {loading ? "Entrando..." : "Entrar"}
                         </Button>
                         <span>Ainda não possui uma conta?</span>
-                        <Button to="/register/user" variant="register">
+                        <Button to="/register" variant="register">
                             Cadastrar
                         </Button>
                     </DivButton>
