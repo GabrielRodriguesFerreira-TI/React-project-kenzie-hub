@@ -58,6 +58,56 @@ export const SpanStyled = styled.span`
 `
 
 export const DivContent = styled.div`
+    margin-top: 20px;
+    width: 100%;
+
     display: flex;
     flex-direction:column;
+    align-items:center;
+    gap: 21px;
+`
+
+export const ContentHeader = styled.div`
+    width: 100%;
+    max-width: 780px;
+
+    display: flex;
+    justify-content: space-between;
+
+    h2 {
+        margin-left: 10px;
+
+        font-family: 'Inter', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 18px;
+        color: #F8F9FA;
+    }
+
+    i {
+        margin-right: 10px;
+
+        width: 32px;
+        height: 32px;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        font-weight: 800;
+        background: #212529;
+        color: #FFFFFF;
+        border-radius: 4px;
+
+        cursor: pointer;
+    }
+`
+
+export const DivPadding = styled.div`
+    width: 100%;
+    max-width: 780px;
+    display: flex;
+    justify-content:center;
 `
