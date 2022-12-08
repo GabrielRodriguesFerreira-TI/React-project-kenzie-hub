@@ -5,6 +5,8 @@ export const BoxSelect = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+    
+    width: 100%;
 `
 
 export const SelectStyled = styled.select`
@@ -31,6 +33,7 @@ export const SelectStyled = styled.select`
         gap: 5px;
 
         font-size: 15px;
+        color: #F8F9FA;
     }
 `
 
