@@ -5,11 +5,10 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { useForm } from "react-hook-form"
 import { modalSchema } from "./formModalSchema"
 import { DivCenter, Ring, SpanLoading } from "./stylesLoading"
+import { Button } from "../Button"
 
 export const AddModal = () => {
     const { typeModal, setIsModalOpen, currentValue, getTech, techLoading, deleteTech } = useContext(TechContext)
-
-    console.log(currentValue)
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: "onBlur",
@@ -44,7 +43,7 @@ export const AddModal = () => {
                                     </select>
                                     {errors.status?.message && <p>{errors.status.message}</p>}
                                 </DivInput>
-                                <ButtonForm type="submit" variant="create">Cadastrar Tecnologia</ButtonForm>
+                                <Button type="submit" variant="entrance">Cadastrar Tecnologia</Button>
                             </FormModal>
                         ) : (
                             <DivCenter>
