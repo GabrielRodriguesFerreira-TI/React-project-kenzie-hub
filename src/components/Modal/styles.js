@@ -1,18 +1,17 @@
 import styled, { css } from "styled-components";
 
 const buttonVariant = {
-    create: css`
-    width: 100%;
-    background: #FF577F;
-    border: 1.2182px solid #FF577F;
-    color: #FFFFFF;
-    `,
-
     delete: css`
     width: 35%;
     background: #868E96;
     border: 1.2182px solid #868E96;
     color: #FFFFFF;
+    transition: 0.5s ease-in-out;
+
+    :hover {
+        background: #343B41;
+        border: 1.2182px solid #343B41;
+    }
     `,
 
     disabled: css`
@@ -34,7 +33,7 @@ export const DivWrapper = styled.div`
     justify-content: center;
 
     background: rgba(0, 0, 0, 0.250);
-
+    z-index: 1000;
 `
 
 export const ModalContent = styled.div`

@@ -1,10 +1,20 @@
+import { useState } from "react"
 import { BoxInput, InputSyled, LabelStyled } from "./styles"
 
 export const InputApp = ({ children, type, placeholder, register, errorInput, disabled }) => {
+    const [showPassowrd, setShowPassword] = useState(false)
+
     return (
         <BoxInput>
             <LabelStyled>{children}</LabelStyled>
-            <InputSyled disabled={disabled} errorInput={errorInput} type={type} placeholder={placeholder} {...register}/>
+            {type === "password" ? (
+                <>
+                    <InputSyled disabled={disabled} errorInput={errorInput} type={showPassowrd ? "text" : "password"} placeholder={placeholder} {...register} />
+                    <i onClick={() => setShowPassword(!showPassowrd)} className={showPassowrd ? "fa-regular fa-eye" : "fa-regular fa-eye-slash"}></i>
+                </>
+            ) : (
+                <InputSyled disabled={disabled} errorInput={errorInput} type={type} placeholder={placeholder} {...register} />
+            )}
         </BoxInput>
     )
 }

@@ -5,6 +5,17 @@ export const BoxInput = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+    position: relative;
+
+    i {
+        position: absolute;
+        top: 40px;
+        right: 20px;
+
+        color: #ffffffa6;
+
+        cursor: pointer;
+    }
 `
 
 export const InputSyled = styled.input`

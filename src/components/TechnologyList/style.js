@@ -11,6 +11,19 @@ export const LiContent = styled.li`
     background: #121214;
     border-radius: 4px;
     transition: 0.5s ease-in-out;
+    animation: SlideIn 0.5s ease 0s 1 normal forwards;
+
+    @keyframes SlideIn {
+	0% {
+		opacity: 0;
+		transform: translateX(250px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
 
     :hover,
     :focus{

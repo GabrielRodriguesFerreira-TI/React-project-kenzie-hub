@@ -10,7 +10,9 @@ export const UserContext = createContext({})
 
 export const UserProvider = ({ children }) => {
     const [loading, setLoading] = useState(false)
+    const [loadingLogin, setLoadingLogin] = useState(false)
     const [userState, setUserState] = useState({})
+    const [isEyeOpen, setIsEyeOpen] = useState("fa-solid fa-eye")
 
     const Navigate = useNavigate()
 
@@ -52,6 +54,7 @@ export const UserProvider = ({ children }) => {
                 autoClose: 1000,
             });
             setLoading(true)
+            setLoadingLogin(true)
             setUserState(response.data.user)
 
 
@@ -62,8 +65,8 @@ export const UserProvider = ({ children }) => {
             Navigate("/dashboard")
 
         } catch (error) {
-            toast.error('Ops! algo deu errado', {
-                autoClose: 3500,
+            toast.error('Sua senha está incorreta!', {
+                autoClose: 2500,
             });
         } finally {
             setLoading(false)
@@ -82,10 +85,14 @@ export const UserProvider = ({ children }) => {
             toast.success('Conta criada com sucesso!', {
                 autoClose: 1500,
             });
+
+            Navigate("/login")
+
         } catch (error) {
             toast.error('Ops! algo deu errado', {
                 autoClose: 3500,
             });
+            console.log(error)
         } finally {
             setLoading(false)
         }
@@ -99,7 +106,7 @@ export const UserProvider = ({ children }) => {
     // -------------------------------------------------------------------------
 
     return (
-        <UserContext.Provider value={{ loading, loginSubmit, registerSubmit, userState, getUser, getUserFunction}}>
+        <UserContext.Provider value={{ loading, loginSubmit, registerSubmit, userState, getUser, getUserFunction, loadingLogin, isEyeOpen, setIsEyeOpen}}>
             {children}
         </UserContext.Provider>
     )
