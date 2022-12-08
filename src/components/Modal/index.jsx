@@ -1,19 +1,22 @@
 import { useContext } from "react"
 import { TechContext } from "../../contexts/TechContext"
-import { ButtonForm, DivButtonForm, DivInput, DivWrapper, FormModal, ModalContent, ModalHeader } from "./styles"
+import { ButtonForm, DivButtonForm, DivWrapper, FormModal, ModalContent, ModalHeader } from "./styles"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useForm } from "react-hook-form"
-import { modalSchema } from "./formModalSchema"
+import { createSchema, editSchema } from "./formModalSchema"
 import { DivCenter, Ring, SpanLoading } from "./stylesLoading"
 import { Button } from "../Button"
+import { InputApp } from "../Input"
+import { Select } from "../Select"
 
 export const AddModal = () => {
-    const { typeModal, setIsModalOpen, currentValue, getTech, techLoading, deleteTech } = useContext(TechContext)
+    const { typeModal, setIsModalOpen, currentValue, getTech, techLoading, deleteTech, toEditTech } = useContext(TechContext)
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: "onBlur",
-        resolver: yupResolver(modalSchema)
+        resolver: yupResolver(typeModal === "create" ? createSchema : editSchema)
     })
+
 
     return (
         <DivWrapper>
@@ -26,23 +29,10 @@ export const AddModal = () => {
                         </ModalHeader>
                         {techLoading === false ? (
                             <FormModal noValidate onSubmit={handleSubmit(getTech)}>
-                                <DivInput>
-                                    <label>Nome</label>
-                                    <input type="text" placeholder="Nome do projeto..." {...register("title")} />
-                                    {errors.title?.message && <p>{errors.title.message}</p>}
-                                </DivInput>
-                                <DivInput>
-                                    <label>Selecionar status</label>
-                                    <select {...register("status")}>
-                                        <option hidden disabled selected value="">Selecionar Status</option>
-                                        <optgroup label="Status">
-                                            <option value="Iniciante">Iniciante</option>
-                                            <option value="Intermediário">Intermediário</option>
-                                            <option value="Avançado">Avançado</option>
-                                        </optgroup>
-                                    </select>
-                                    {errors.status?.message && <p>{errors.status.message}</p>}
-                                </DivInput>
+                                <InputApp errorInput={errors.title?.message} type={"text"} placeholder="Nome do projeto..." register={register("title")}>Nome</InputApp>
+                                {errors.title?.message && <p>{errors.title.message}</p>}
+                                <Select errorSelect={errors.status?.message} type="formModal" register={register("status")}>Selecionar status</Select>
+                                {errors.status?.message && <p>{errors.status.message}</p>}
                                 <Button type="submit" variant="entrance">Cadastrar Tecnologia</Button>
                             </FormModal>
                         ) : (
@@ -59,23 +49,16 @@ export const AddModal = () => {
                             <i onClick={() => setIsModalOpen(false)}>X</i>
                         </ModalHeader>
                         {techLoading === false ? (
-                            <FormModal noValidate onSubmit={(e) => {
-                                e.preventDefault()
-                                deleteTech(currentValue.id)
-                            }}>
-                                <DivInput>
-                                    <label>Nome do projeto</label>
-                                    <input disabled type="text" value={currentValue.title} />
-                                </DivInput>
-                                <DivInput>
-                                    <label>Status</label>
-                                    <select disabled>
-                                        <option hidden disabled selected value="">{currentValue.type}</option>
-                                    </select>
-                                </DivInput>
+                            <FormModal noValidate onSubmit={handleSubmit(toEditTech)}>
+                                <InputApp value={currentValue.title} type="text" disabled={true} >Nome do projeto</InputApp>
+                                <Select errorSelect={errors.status?.message} type="formModal" register={register("status")}>Status</Select>
+                                {errors.status?.message && <p>{errors.status.message}</p>}
                                 <DivButtonForm>
-                                    <ButtonForm disabled variant="disabled">Salvar alterações</ButtonForm>
-                                    <ButtonForm type="submit" variant="delete">Excluir</ButtonForm>
+                                    <ButtonForm type="submit" variant="toSave">Salvar alterações</ButtonForm>
+                                    <ButtonForm onClick={(e) => {
+                                        e.preventDefault()
+                                        deleteTech(currentValue.id)
+                                    }} variant="delete">Excluir</ButtonForm>
                                 </DivButtonForm>
                             </FormModal>
                         ) : (
@@ -87,6 +70,6 @@ export const AddModal = () => {
                     </>
                 )}
             </ModalContent>
-        </DivWrapper>
+        </DivWrapper >
     )
 }

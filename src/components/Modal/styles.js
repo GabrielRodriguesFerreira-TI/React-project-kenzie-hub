@@ -14,11 +14,17 @@ const buttonVariant = {
     }
     `,
 
-    disabled: css`
+    toSave: css`
     width: 55%;
-    background: #59323F;
-    border: 1.2182px solid #59323F;
+    background: #FF577F;
+    border: 1px solid #FF577F;
     color: #FFFFFF;
+    transition: 0.5s ease-in-out;
+
+    :hover {
+        background: #FF427F;
+        border: 1px solid #FF427F;
+    }
     `
 }
 
@@ -106,88 +112,17 @@ export const FormModal = styled.form`
     align-items: center;
     gap: 20px;
 
-`
-
-export const DivInput = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-
-    width: 100%;
-
-    label {
-        font-family: 'Inter', sans-serif;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 12.182px;
-        color: #F8F9FA;
-    }
-
-    input {
-        width: 93%;
-        height: 48px;
-
-        background: #343B41;
-        border: 1.2182px solid #343B41;
-        border-radius: 4px;
-        color: #F8F9FA;
-
-        font-family: 'Inter', sans-serif;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 16.2426px;
-
-        padding-left: 20px;
-
-        ::placeholder {
-            color: #868E96;
-        }
-
-        :disabled {
-            background: #2e3439;
-            border: 1.2182px solid #2e3439;
-            color: #5c6268;
-        }
-    }
-
-    select {
-        width: 100%;
-        height: 50px;
-
-        background: #343B41;
-        border: 1.2182px solid #343B41;
-        border-radius: 4px;
-        color: #868E96;
-
-        font-family: 'Inter', sans-serif;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 16.2426px;
-
-        padding-left: 15px;
-
-        :focus {
-            border: 1.2182px solid #F8F9FA
-        }
-
-        optgroup {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-
-        font-size: 15px;
-        color: #F8F9FA;
-        }
-    }
-
     p {
+        position: relative;
+        right: 110px;
+
         color: red;
         font-family: 'Inter', sans-serif;
         font-style: normal;
         font-weight: 500;
         font-size: 14px;
     }
+
 `
 
 export const ButtonForm = styled.button`

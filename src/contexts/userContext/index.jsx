@@ -25,9 +25,11 @@ export const UserProvider = ({ children }) => {
             })
             setLoading(true)
             setUserState(response.data)
+
         } catch (error) {
             window.localStorage.clear()
             console.error(error)
+
         } finally {
             setLoading(false)
         }
@@ -68,6 +70,7 @@ export const UserProvider = ({ children }) => {
             toast.error('Sua senha está incorreta!', {
                 autoClose: 2500,
             });
+
         } finally {
             setLoading(false)
         }
@@ -93,6 +96,7 @@ export const UserProvider = ({ children }) => {
                 autoClose: 3500,
             });
             console.log(error)
+            
         } finally {
             setLoading(false)
         }

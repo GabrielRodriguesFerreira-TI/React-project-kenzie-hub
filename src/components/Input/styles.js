@@ -7,6 +7,8 @@ export const BoxInput = styled.div`
     gap: 10px;
     position: relative;
 
+    width: 100%;
+
     i {
         position: absolute;
         top: 40px;
@@ -46,6 +48,10 @@ export const InputSyled = styled.input`
         font-style: normal;
         font-weight: 400;
         line-height: 21px;
+        color: #868E96;
+    }
+
+    :disabled {
         color: #868E96;
     }
 `
