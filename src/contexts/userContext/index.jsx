@@ -28,6 +28,12 @@ export const UserProvider = ({ children }) => {
 
         } catch (error) {
             window.localStorage.clear()
+            if (error.message === "timeout of 2000ms exceeded") {
+                Navigate("/login")
+                toast.error('Tempo limite atingido', {
+                    autoClose: 2500,
+                });
+            }
             console.error(error)
 
         } finally {
@@ -96,7 +102,7 @@ export const UserProvider = ({ children }) => {
                 autoClose: 3500,
             });
             console.log(error)
-            
+
         } finally {
             setLoading(false)
         }
@@ -110,7 +116,7 @@ export const UserProvider = ({ children }) => {
     // -------------------------------------------------------------------------
 
     return (
-        <UserContext.Provider value={{ loading, loginSubmit, registerSubmit, userState, getUser, getUserFunction, loadingLogin, isEyeOpen, setIsEyeOpen}}>
+        <UserContext.Provider value={{ loading, loginSubmit, registerSubmit, userState, getUser, getUserFunction, loadingLogin, isEyeOpen, setIsEyeOpen }}>
             {children}
         </UserContext.Provider>
     )
