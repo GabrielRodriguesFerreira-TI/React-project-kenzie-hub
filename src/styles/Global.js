@@ -52,4 +52,15 @@ html {
 button {
 	cursor: pointer;
 }
+
+::-webkit-scrollbar{
+    height: 8px;
+    border-radius: 5px;
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(transparent,#56575573);
+    border-radius: 8px;
+}
 `
