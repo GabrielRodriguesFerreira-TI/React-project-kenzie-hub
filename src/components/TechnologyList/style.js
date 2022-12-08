@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const LiContent = styled.li`
     width: 95%;
-    height: 50px;
+    min-height: 50px;
 
     display: flex;
     justify-content:space-between;

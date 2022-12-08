@@ -58,7 +58,7 @@ export const SpanStyled = styled.span`
 `
 
 export const DivContent = styled.div`
-    margin-top: 20px;
+    margin-top: 40px;
     width: 100%;
 
     display: flex;
@@ -102,6 +102,11 @@ export const ContentHeader = styled.div`
         border-radius: 4px;
 
         cursor: pointer;
+        transition: 0.5s ease-in-out;
+
+        :hover{
+            background: #343B41;
+        }
     }
 `
 

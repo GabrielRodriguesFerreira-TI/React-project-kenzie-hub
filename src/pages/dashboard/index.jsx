@@ -8,7 +8,7 @@ import { ContainerStyled, ContentHeader, DivContent, DivHeader, DivPadding, Span
 
 export const DashBoardPage = () => {
     const { userState, loading } = useContext(UserContext)
-    const { setIsModalOpen, isModalOpen } = useContext(TechContext)
+    const { isModalOpen, setIsModalOpen, setTypeModal } = useContext(TechContext)
 
 
     if (loading) {
@@ -17,7 +17,7 @@ export const DashBoardPage = () => {
 
     return (
         <>
-            {isModalOpen === "true" && <AddModal />}
+            {isModalOpen && <AddModal />}
 
             <ContainerStyled>
                 <DivHeader>
@@ -44,7 +44,10 @@ export const DashBoardPage = () => {
                 <DivContent>
                     <ContentHeader>
                         <h2>Tecnologias</h2>
-                        <i onClick={() => setIsModalOpen("true")}>+</i>
+                        <i onClick={() => {
+                            setIsModalOpen(true)
+                            setTypeModal("create")
+                        }}>+</i>
                     </ContentHeader>
 
                     <DivPadding>
